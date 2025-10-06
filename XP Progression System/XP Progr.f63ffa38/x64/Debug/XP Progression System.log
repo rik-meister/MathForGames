@@ -1,0 +1,10 @@
+﻿  Main.cpp
+C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystem.h(70,48): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'Main.cpp')
+  
+  XpSystemFunctions.cpp
+C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystem.h(70,48): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
+  (compiling source file 'XpSystemFunctions.cpp')
+  
+  Generating Code...
+  XP Progression System.vcxproj -> C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\x64\Debug\XP Progression System.exe
