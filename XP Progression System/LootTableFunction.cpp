@@ -7,7 +7,6 @@ LootTable::LootTable()
 {
 	totalWeight = 0;
 	itemCount = 0;
-	srand(time(0));
 }
 void LootTable::addItem(string name, int weight)
 {

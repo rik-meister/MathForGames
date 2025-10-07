@@ -8,77 +8,51 @@
 using namespace std;
 
 
-class Player 
+class Character
 {
+private:
+    void levelUp();
+    long long calculateXPForNextLevel(int currentLevel);
+
 public:
     string name;
     int level;
     int currentXP;
     int xpToNextLevel;
     int health;
+    int atk;
     int attackPower;
 
     // Constructor
-    Player()
-    {
-        name = "Unkown";
-        level = 1;
-        health = 100;
-        attackPower = 25;
-        currentXP = 0;
-        xpToNextLevel = 100;
-    }
-    Player(string n, int lvl, int h, int ap, int cXP, int xpToNext)
-    {
-        name = n;
-        level = lvl;
-        health = h;
-        attackPower = ap;
-        currentXP = cXP;
-        xpToNextLevel = xpToNext;
-    }
-    bool isAlive()
-    {
-        return health > 0;
-    }
-    void attack(Player& target)
-    {
-        target.health -= attackPower;
-        cout << name << " attacks " << target.name << " for " << attackPower << " damage!" << endl;
-    }
-    void displayStatus()
-    {
-        cout << name << " - HP: " << health << endl;
-    }
-    void gainXP(int amount)
-    {
-        currentXP += amount;
-        std::cout << "Gained " << amount << " XP. Current XP: " << currentXP << std::endl;
+    Character();
+    Character(string n, int lvl, int h, int ap, int cXP, int xpToNext);
 
-        // Check for level up
-        while (currentXP >= xpToNextLevel) 
-        {
-            levelUp();
-        }
+    // Functions
+    bool isAlive();
+    int critDamage(int damage);
+    void attack(Enemy& target);
+    void displayStatus();
+    void gainXP(int amount);
+};
+class Enemy {
+public:
+    string name;
+    int health;
+    int attackPower;
+
+    Enemy(string n, int h, int a) : name(n), health(h), attackPower(a) {}
+
+    void takeDamage(int dmg) {
+        health -= dmg;
+        cout << name << " takes " << dmg << " damage. HP left: " << health << endl;
     }
 
-private:
-    void levelUp() 
-    {
-        level++;
-        currentXP -= xpToNextLevel; // Deduct XP required for the level
-        xpToNextLevel = calculateXPForNextLevel(level); // Calculate new XP requirement
-        std::cout << "Leveled up! New level: " << level << ". XP to next level: " << xpToNextLevel << std::endl;
-        // Add any other level-up logic here (e.g., increase stats)
+    void attack() {
+        cout << name << " attacks for " << attackPower << " damage!" << endl;
     }
 
-    long long calculateXPForNextLevel(int currentLevel) 
-    {
-        // Example: XP required increases exponentially
-        return 100LL * currentLevel * currentLevel;
-        // You can use a more complex formula based on your game's design
+    bool isDefeated() {
+        return health <= 0;
     }
 };
-
-
 #endif
