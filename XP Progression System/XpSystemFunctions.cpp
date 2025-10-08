@@ -39,11 +39,11 @@ int Character::critDamage(int damage) // Crit function for attackPower = critDam
 {
     return (rand() % 30 - 10 + 1) + damage; // Right now it is adding damage, can be changed to multiply later
 }
-void Character::attack(Enemy& target) // Targeting
+void Character::attack(Enemy& Character) // Targeting
 {
     attackPower = critDamage(atk);
-    target.health -= attackPower;
-    cout << name << " attacks " << target.name << " for " << attackPower << " damage!" << endl;
+    Character.health -= attackPower;
+    cout << name << " attacks " << Character.name << " for " << attackPower << " damage!" << endl;
 }
 void Character::displayStatus() // Display health of target
 {

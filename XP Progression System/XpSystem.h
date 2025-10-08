@@ -30,11 +30,12 @@ public:
     // Functions
     bool isAlive();
     int critDamage(int damage);
-    void attack(Enemy& target);
+    void attack(Character player&Enemy); 
     void displayStatus();
     void gainXP(int amount);
 };
-class Enemy {
+class Enemy:public Character
+{
 public:
     string name;
     int health;

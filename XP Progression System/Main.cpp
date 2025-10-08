@@ -34,7 +34,7 @@ int main()
             p1.attack(enemy);
             if (!enemy.isDefeated())
             {
-                
+                enemy.attack(p1);
             }
         }
     }
