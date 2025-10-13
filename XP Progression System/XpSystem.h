@@ -8,7 +8,7 @@
 using namespace std;
 
 
-class Character
+class Player
 {
 private:
     void levelUp();
@@ -24,35 +24,56 @@ public:
     int attackPower;
 
     // Constructor
-    Character();
-    Character(string n, int lvl, int h, int ap, int cXP, int xpToNext);
+    Player();
+    Player(string n, int lvl, int h, int ap, int cXP, int xpToNext);
 
     // Functions
     bool isAlive();
     int critDamage(int damage);
-    void attack(Character player&Enemy); 
+    void attack(Enemy target); 
     void displayStatus();
     void gainXP(int amount);
 };
-class Enemy:public Character
+
+
+
+class Enemy
 {
 public:
     string name;
     int health;
+    int atk;
     int attackPower;
+    
 
     Enemy(string n, int h, int a) : name(n), health(h), attackPower(a) {}
 
-    void takeDamage(int dmg) {
+    void takeDamage(int dmg)
+    {
         health -= dmg;
         cout << name << " takes " << dmg << " damage. HP left: " << health << endl;
     }
-
-    void attack() {
+    int critDamage(int damage) // Crit function for attackPower = critDamge(input damage here)
+    {
+        return (rand() % 30 - 10 + 1) + damage; // Right now it is adding damage, can be changed to multiply later
+    }
+    void attack(Player& Enemy)
+    {
+        attackPower = critDamage(atk);
+        Enemy.health -= attackPower;
+        cout << name << " attacks " << Enemy.name << " for " << attackPower << " damage!" << endl;
+    }
+    bool isAlive() // Checks if enemy is alive
+    {
+        return health > 0;
+    }
+    void attack()
+    {
         cout << name << " attacks for " << attackPower << " damage!" << endl;
     }
 
-    bool isDefeated() {
+    bool isDefeated()
+    {
         return health <= 0;
     }
 };

@@ -127,13 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EnemyFunctions.cpp" />
     <ClCompile Include="LootTableFunction.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="XpSystemFunctions.cpp" />
+    <ClCompile Include="PlayerFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LootTable.h" />
-    <ClInclude Include="XpSystem.h" />
+    <ClInclude Include="RPGSYSTEM.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

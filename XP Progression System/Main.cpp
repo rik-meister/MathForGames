@@ -20,30 +20,42 @@ int main()
 {
     srand(time(0));
 
-    Character p1("Rundas", 1, 250, 25, 0, 100);
-    Character p2("Billy", 1, 100, 85, 0, 100);
+    Player p1("Rundas", 1, 250, 25, 0, 100);
+    Player p2("Billy", 1, 100, 85, 0, 100);
 
+    Enemy enemies = generateEnemy();
 
-    Enemy enemy = generateEnemy();
-    int round = 1;
-    while (p1.isAlive())
-    {
-        cout << "--- Round " << round << " ---";
-        while (!enemy.isDefeated())
-        {
-            p1.attack(enemy);
-            if (!enemy.isDefeated())
-            {
-                enemy.attack(p1);
-            }
-        }
-    }
-    //cout << "===== WELCOME TO THE ARENA =====" << endl;
+    cout << "===== WELCOME TO THE ARENA =====" << endl;
     //cout << "In one corner we have...!" << endl;
     //cout << "Player: '" << p1.name << "', Level: " << p1.level << ", XP " << p1.currentXP << ", XP to next level " << p1.xpToNextLevel << std::endl;
     //cout << "and in the other...!" << endl;
     //cout << "Player: '" << p2.name << "', Level: " << p2.level << ", XP " << p2.currentXP << ", XP to next level " << p2.xpToNextLevel << std::endl;
 
+    int round = 1;
+    while (p1.isAlive())
+    {
+        cout << "\n--- Turn " << round << " ---" << endl;
+        cout << "A wild " << enemies.name << " appears!" << endl;
+
+        while (enemies.isAlive())
+        {
+            p1.attack(enemies);
+
+            if (p1.isAlive())
+            {
+                enemies.attack(p1);
+            }
+        }
+        cout << enemies.name << " is defeated!" << endl;
+        ++round;
+
+        /*if (!p1.isAlive())
+        {
+            cout << p1.name << " has fallen in battle." << endl;
+            break;
+        }
+        cout << "Press Enter to face the next enemy" << endl;*/
+    }
     //int turn = 1;
     //while (p1.isAlive() && p2.isAlive())
     //{
