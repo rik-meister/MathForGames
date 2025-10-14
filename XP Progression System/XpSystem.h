@@ -7,8 +7,10 @@
 
 using namespace std;
 
+class Player;
+class Enemy;
 
-class Character
+class Player
 {
 private:
     void levelUp();
@@ -24,36 +26,34 @@ public:
     int attackPower;
 
     // Constructor
-    Character();
-    Character(string n, int lvl, int h, int ap, int cXP, int xpToNext);
+    Player();
+    Player(string n, int lvl, int h, int ap, int cXP, int xpToNext);
 
     // Functions
     bool isAlive();
     int critDamage(int damage);
-    void attack(Character player&Enemy); 
+    void attack(Enemy& target); 
     void displayStatus();
     void gainXP(int amount);
 };
-class Enemy:public Character
+
+class Enemy
 {
 public:
     string name;
     int health;
     int attackPower;
-
-    Enemy(string n, int h, int a) : name(n), health(h), attackPower(a) {}
-
-    void takeDamage(int dmg) {
-        health -= dmg;
-        cout << name << " takes " << dmg << " damage. HP left: " << health << endl;
+    int atk;
+    int level;
+    
+    Enemy(string n, int lvl, int h, int a) : name(n), level(lvl), health(h), attackPower(a) 
+    {
+        atk = a;
+        attackPower = critDamage(atk);
     }
-
-    void attack() {
-        cout << name << " attacks for " << attackPower << " damage!" << endl;
-    }
-
-    bool isDefeated() {
-        return health <= 0;
-    }
+    int critDamage(int damage); // Crit function for attackPower = critDamge(input damage here)
+    void attack(Player& player);
+    bool isAlive(); // Checks if enemy is alive
+    void displayStatus(); // Display health
 };
 #endif

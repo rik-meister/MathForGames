@@ -1,35 +1,3 @@
 ﻿  Main.cpp
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystem.h(33,17): error C2061: syntax error: identifier 'Enemy'
-  (compiling source file 'Main.cpp')
-  
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\Main.cpp(21,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\Main.cpp(34,15): error C2660: 'Character::attack': function does not take 1 arguments
-      C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystem.h(33,10):
-      see declaration of 'Character::attack'
-      C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\Main.cpp(34,15):
-      while trying to match the argument list '(Enemy)'
-  
-  XpSystemFunctions.cpp
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystem.h(33,17): error C2061: syntax error: identifier 'Enemy'
-  (compiling source file 'XpSystemFunctions.cpp')
-  
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystemFunctions.cpp(42,17): error C2511: 'void Character::attack(Enemy &)': overloaded member function not found in 'Character'
-      C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystem.h(11,7):
-      see declaration of 'Character'
-  
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystemFunctions.cpp(44,30): error C2597: illegal reference to non-static member 'Character::atk'
-      C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystem.h(23,9):
-      see declaration of 'Character::atk'
-  
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystemFunctions.cpp(45,22): error C2597: illegal reference to non-static member 'Character::attackPower'
-      C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystemFunctions.cpp(45,22):
-      see declaration of 'Character::attackPower'
-  
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystemFunctions.cpp(45,22): error C3867: 'Character::attackPower': non-standard syntax; use '&' to create a pointer to member
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystemFunctions.cpp(45,22): error C2568: '-=': unable to resolve function overload
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystemFunctions.cpp(46,13): error C2597: illegal reference to non-static member 'Character::name'
-      C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystem.h(18,12):
-      see declaration of 'Character::name'
-  
-C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\XpSystemFunctions.cpp(69,44): warning C4244: '=': conversion from '__int64' to 'int', possible loss of data
-  Generating Code...
+C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\Main.cpp(22,15): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+  XP Progression System.vcxproj -> C:\Users\s258033\Documents\GitHub\MathForGames\XP Progression System\x64\Debug\XP Progression System.exe

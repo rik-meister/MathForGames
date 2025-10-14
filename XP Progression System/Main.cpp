@@ -11,38 +11,60 @@ Enemy generateEnemy()
 {
     string names[] = { "Goblin", "Orc", "Troll", "Skeleton", "Bandit" };
     int index = rand() % 5;
+    int lvl = rand() % 10 + 5;        // 5-14 level
     int hp = rand() % 50 + 30;       // 30–79 HP
-    int atk = rand() % 10 + 5;       // 5–14 attack
-    return Enemy(names[index], hp, atk);
+    int attackPower = rand() % 10 + 5;       // 5–14 attack
+    return Enemy(names[index], lvl, hp, attackPower);
 }
 
 int main()
 {
     srand(time(0));
 
-    Character p1("Rundas", 1, 250, 25, 0, 100);
-    Character p2("Billy", 1, 100, 85, 0, 100);
+    Player p1("Rundas", 1, 250, 25, 0, 100);
+    Player p2("Billy", 1, 100, 85, 0, 100);
 
+    Enemy enemies = generateEnemy();
 
-    Enemy enemy = generateEnemy();
+    cout << "===== WELCOME TO THE ARENA =====" << endl;
+    cout << "Player: '" << p1.name << "', Level: " << p1.level << ", XP " << p1.currentXP << ", XP to next level " << p1.xpToNextLevel << std::endl;
+    //cout << "and in the other...!" << endl;
+    //cout << "Player: '" << p2.name << "', Level: " << p2.level << ", XP " << p2.currentXP << ", XP to next level " << p2.xpToNextLevel << std::endl;
+
     int round = 1;
     while (p1.isAlive())
     {
-        cout << "--- Round " << round << " ---";
-        while (!enemy.isDefeated())
+        cout << "\n--- Round " << round << " ---" << endl;
+        Enemy enemies = generateEnemy();
+        cout << "Ecounter: Level " << enemies.level << " " << enemies.name << endl;
+
+        while (enemies.isAlive())
         {
-            p1.attack(enemy);
-            if (!enemy.isDefeated())
+            //Player 1's Turn
+            p1.attack(enemies);
+            enemies.displayStatus();
+
+            if (!enemies.isAlive())
             {
-                enemy.attack(p1);
+                cout << enemies.name << " is defeated!" << endl;
+                p1.gainXP(150);
+            }
+
+            enemies.attack(p1);
+            p1.displayStatus();
+
+            if (!p1.isAlive())
+            {
+                cout << p1.name << " has fallen in battle." << endl;
+                break;
             }
         }
+        cout << "====== Press Enter to continue =====" << endl;
+        cin.ignore();
+        ++round;
     }
-    //cout << "===== WELCOME TO THE ARENA =====" << endl;
-    //cout << "In one corner we have...!" << endl;
-    //cout << "Player: '" << p1.name << "', Level: " << p1.level << ", XP " << p1.currentXP << ", XP to next level " << p1.xpToNextLevel << std::endl;
-    //cout << "and in the other...!" << endl;
-    //cout << "Player: '" << p2.name << "', Level: " << p2.level << ", XP " << p2.currentXP << ", XP to next level " << p2.xpToNextLevel << std::endl;
+    
+
 
     //int turn = 1;
     //while (p1.isAlive() && p2.isAlive())

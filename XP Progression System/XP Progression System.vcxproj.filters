@@ -18,18 +18,21 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="XpSystemFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="LootTableFunction.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="XpSystemFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Vectors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="XpSystem.h">
+    <ClInclude Include="LootTable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LootTable.h">
+    <ClInclude Include="XpSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
