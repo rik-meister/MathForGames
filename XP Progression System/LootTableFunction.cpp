@@ -40,7 +40,7 @@ string LootTable::rollLoot()
 }
 void LootTable::displayTable()
 {
-	cout << "=== Loot Table ===" << endl;
+	/*cout << "=== Loot Table ===" << endl;*/
 	for (int i = 0; i < itemCount; i++)
 	{
 		float chance = (items[i].weight / (float)totalWeight) * 100;

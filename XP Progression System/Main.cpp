@@ -21,98 +21,88 @@ int main()
 {
     srand(time(0));
 
+    string command;
+
     Player p1("Rundas", 1, 250, 25, 0, 100);
     Player p2("Billy", 1, 100, 85, 0, 100);
 
     Enemy enemies = generateEnemy();
 
+    //Loot Table
+    LootTable rpgLoot;
+
+    rpgLoot.addItem("Microtransactions", 70);
+    rpgLoot.addItem("Shoe (Singular)", 15);
+    rpgLoot.addItem("Shredded Sock (Singular?)", 15);
+    rpgLoot.addItem("Toe", 0.003);
+
+
+    //=== Roll SImulation ===
+    /*for (int i = 0; i < 10; i++)
+    {
+        cout << "Drop" << (i + 1) << ": " << rpgLoot.rollLoot() << endl;
+    }*/
+
+
     cout << "===== WELCOME TO THE ARENA =====" << endl;
     cout << "Player: '" << p1.name << "', Level: " << p1.level << ", XP " << p1.currentXP << ", XP to next level " << p1.xpToNextLevel << std::endl;
-    //cout << "and in the other...!" << endl;
-    //cout << "Player: '" << p2.name << "', Level: " << p2.level << ", XP " << p2.currentXP << ", XP to next level " << p2.xpToNextLevel << std::endl;
 
     int round = 1;
+
     while (p1.isAlive())
     {
         cout << "\n--- Round " << round << " ---" << endl;
         Enemy enemies = generateEnemy();
         cout << "Ecounter: Level " << enemies.level << " " << enemies.name << endl;
 
+        cout << "====== [C]ontinue - [R]est - [S]tats - [Q]uit =====" << endl;
+        cin >> command;
+        
+        if (command == "q")
+        {
+            break;
+        }
+        /*else if (command == "r")
+        {
+            return p1.health += 20;
+        }
+        if (command == "s")
+        {
+            p1.displayStatus();
+        }*/
         while (enemies.isAlive())
         {
             //Player 1's Turn
             p1.attack(enemies);
             enemies.displayStatus();
 
+    \
             if (!enemies.isAlive())
             {
                 cout << enemies.name << " is defeated!" << endl;
+                cout << enemies.name << " dropped " << rpgLoot.rollLoot() << endl;
                 p1.gainXP(150);
+                break;
             }
 
             enemies.attack(p1);
             p1.displayStatus();
+
+            cout << "====== [C]ontinue - [E]scape =====" << endl;
+            cin >> command;
+
+            if (command == "e")
+            {
+                break;
+            }
 
             if (!p1.isAlive())
             {
                 cout << p1.name << " has fallen in battle." << endl;
                 break;
             }
+            
         }
-        cout << "====== Press Enter to continue =====" << endl;
-        cin.ignore();
         ++round;
     }
-    
-
-
-    //int turn = 1;
-    //while (p1.isAlive() && p2.isAlive())
-    //{
-    //    cout << "\n--- Turn " << turn << " ---" << endl;
-
-    //    //Player 1's Turn
-    //    p1.attack(p2);
-    //    p2.displayStatus();
-
-    //    if (!p2.isAlive())
-    //    {
-    //        cout << " Victory! " << p1.name << ", is the winner!" << endl;
-    //        p1.gainXP(150);
-    //        break;
-    //    }
-
-    //    //Player 2's turn
-    //    p2.attack(p1);
-    //    p1.displayStatus();
-
-    //    if (!p1.isAlive())
-    //    {
-    //        cout << "Defeat! " << p2.name << ", is the winner!" << endl;
-    //        break;
-    //    }
-    //    cout << "Press Enter to continue...";
-    //    cin.ignore();
-    //    ++turn;
-    //}
-    //return 0;
-
-
-            //Loot Table
-    //LootTable MatthewLoot;
-
-    //MatthewLoot.addItem("Microtransactions", 70);
-    //MatthewLoot.addItem("Shoe (Singular)", 15);
-    //MatthewLoot.addItem("Shredded Sock (Singular?)", 15);
-    //MatthewLoot.addItem("Toe", 0.003);
-
-    //MatthewLoot.displayTable();
-
-    //cout << "=== Roll SImulation ===";
-    //for (int i = 0; i < 10; i++ )
-    //{
-    //    cout << "Drop" << (i + 1) << ": " << MatthewLoot.rollLoot() << endl;
-    //}
-
-    //return 0;
 }
