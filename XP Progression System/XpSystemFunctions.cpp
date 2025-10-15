@@ -12,16 +12,18 @@ Player::Player()
     name = "Unkown";
     level = 1;
     health = 100;
+    maxHealth = 100;
     atk = 25;
     attackPower = critDamage(atk);
     currentXP = 0;
     xpToNextLevel = 100;
 }
-Player::Player(string n, int lvl, int h, int ap, int cXP, int xpToNext)
+Player::Player(string n, int lvl, int h, int mh, int ap, int cXP, int xpToNext)
 {
     name = n;
     level = lvl;
     health = h;
+    maxHealth = mh;
     atk = ap;
     attackPower = critDamage(atk);
     currentXP = cXP;
@@ -44,6 +46,14 @@ void Player::attack(Enemy& target) // Targeting
     attackPower = critDamage(atk);
     target.health -= attackPower;
     cout << name << " attacks " << target.name << " for " << attackPower << " damage!" << endl;
+}
+void Player::rest()
+{
+    health += 50;
+    if (health > maxHealth)
+    {
+        health = maxHealth;
+    }
 }
 void Player::displayStatus() // Display health of target
 {

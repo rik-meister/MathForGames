@@ -23,8 +23,8 @@ int main()
 
     string command;
 
-    Player p1("Rundas", 1, 250, 25, 0, 100);
-    Player p2("Billy", 1, 100, 85, 0, 100);
+    Player p1("Rundas", 1, 250, 250, 25, 0, 100);
+    Player p2("Billy", 1, 100, 100, 85, 0, 100);
 
     Enemy enemies = generateEnemy();
 
@@ -48,40 +48,53 @@ int main()
     cout << "Player: '" << p1.name << "', Level: " << p1.level << ", XP " << p1.currentXP << ", XP to next level " << p1.xpToNextLevel << std::endl;
 
     int round = 1;
+    int restCount = 0;
 
     while (p1.isAlive())
     {
-        cout << "\n--- Round " << round << " ---" << endl;
+        cout << "\n===================== Round " << round << " =====================" << endl;
         Enemy enemies = generateEnemy();
-        cout << "Ecounter: Level " << enemies.level << " " << enemies.name << endl;
-
-        cout << "====== [C]ontinue - [R]est - [S]tats - [Q]uit =====" << endl;
+        cout << "---> Ecounter: Level " << enemies.level << " " << enemies.name << endl;
+        cout << "===================================================" << endl;
+        cout << "====== [C]ontinue - [R]est - [Q]uit =====" << endl;
+        cout << "===================================================" << endl;
         cin >> command;
-        
-        if (command == "q")
+     
+        if (command == "r")
+        {
+            if (restCount >= 3)
+            {
+                cout << "You can no longer rest" << endl;
+                p1.displayStatus();
+                cin.ignore();
+            }
+            else 
+            {
+                p1.rest();
+
+                cout << "Resting... ";
+                p1.displayStatus();
+            }
+            restCount++;
+        }
+        else if (command == "q")
         {
             break;
         }
-        /*else if (command == "r")
-        {
-            return p1.health += 20;
-        }
-        if (command == "s")
-        {
-            p1.displayStatus();
-        }*/
-        while (enemies.isAlive())
+
+        while (command == "c" && enemies.isAlive())
         {
             //Player 1's Turn
             p1.attack(enemies);
             enemies.displayStatus();
 
-    \
+    
             if (!enemies.isAlive())
             {
                 cout << enemies.name << " is defeated!" << endl;
                 cout << enemies.name << " dropped " << rpgLoot.rollLoot() << endl;
                 p1.gainXP(150);
+                
                 break;
             }
 
@@ -101,7 +114,6 @@ int main()
                 cout << p1.name << " has fallen in battle." << endl;
                 break;
             }
-            
         }
         ++round;
     }

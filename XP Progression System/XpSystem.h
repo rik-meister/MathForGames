@@ -22,17 +22,19 @@ public:
     int currentXP;
     int xpToNextLevel;
     int health;
+    int maxHealth;
     int atk;
     int attackPower;
 
     // Constructor
     Player();
-    Player(string n, int lvl, int h, int ap, int cXP, int xpToNext);
+    Player(string n, int lvl, int h, int mh, int ap, int cXP, int xpToNext);
 
     // Functions
     bool isAlive();
     int critDamage(int damage);
-    void attack(Enemy& target); 
+    void attack(Enemy& target);
+    void rest();
     void displayStatus();
     void gainXP(int amount);
 };
